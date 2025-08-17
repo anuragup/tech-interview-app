@@ -1,0 +1,26 @@
+# Ignore Helm-generated files
+Chart.lock
+*.tgz
+
+# Ignore Kubernetes generated files
+*.log
+*.pid
+*.dump
+
+# Ignore local configuration files
+values-dev.yaml
+values-prod.yaml
+
+# Ignore IDE and editor files
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Ignore Terraform state files (if any)
+*.tfstate
+*.tfstate.backup
+
+# Ignore temporary files
+*~
+.#*

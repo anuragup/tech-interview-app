@@ -1,0 +1,34 @@
+replicaCount: 2  # Initial scalability
+image:
+  repository: gradyent/tech-interview
+  pullPolicy: IfNotPresent
+  tag: latest
+service:
+  type: LoadBalancer
+  port: 8080
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi  # Cost control
+  requests:
+    cpu: 250m
+    memory: 256Mi
+readinessProbe:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 10
+livenessProbe:
+  httpGet:
+    path: /hello
+    port: 8080
+  initialDelaySeconds: 15
+  periodSeconds: 20
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilization: 80  # Scalability
+monitoring:
+  serviceMonitor: true  # Monitoring via Prometheus
